@@ -59,17 +59,21 @@ function allWagesFor(emp){
     //     total = total + wagesEarnedOnDate(emp, x.date)
     // }
     // return total
-    let total = emp.timeInEvents.reduce((acc, num){
+    let total = emp.timeInEvents.reduce((acc, num) => {
         return acc + wagesEarnedOnDate(emp, num.date)
-    })
-    return totals
+    }, 0)
+    return total
 }
 
 function calculatePayroll(empArray){
-    let total = 0
-    for (let x of empArray){
-        total = total + allWagesFor(x)
-    }
+    // let total = 0
+    // for (let x of empArray){
+    //     total = total + allWagesFor(x)
+    // }
+
+    let total = empArray.reduce((acc, num) => {
+        return acc + allWagesFor(num)
+    }, 0)
     return total
 }
 
