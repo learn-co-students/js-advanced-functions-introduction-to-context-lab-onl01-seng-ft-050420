@@ -66,7 +66,7 @@ following would happen:
 - Load up all the employees' cards into a tray
 - Feed the tray of cards into the computer
 - The computer would read in each card and calculate the hours worked for the week per card
-- The computer would emit a new card with all the old data but this card would have a new field 
+- The computer would emit a new card with all the old data but this card would have a new field
   added called something like `wagesPaidInWeek33OfYear: 550`
 - The computer would also print out a table of the employee name and the amount owed
 
