@@ -40,14 +40,15 @@ function createTimeOutEvent(record, time){
 };
 
 function hoursWorkedOnDate(record, date) {
-    if (record.timeInEvents[0].date === date) {
-        let hoursWorked =  record.timeOutEvents[0].hour - record.timeInEvents[0].hour;
-        return hoursWorked/100
-    };
+    let objTimeIn = record.timeInEvents.find(d => d.date === date )
+    let objTimeOut = record.timeOutEvents.find(d => d.date === date )
+    let hoursWorked = objTimeOut.hour - objTimeIn.hour;
+    return hoursWorked/100
+    
   };
 
 function wagesEarnedOnDate(record,date) {
-    return hoursWorkedOnDate(record,date) * record.payPerHour
+    return parseFloat(hoursWorkedOnDate(record,date) * record.payPerHour)
 };
 
 function findEmployeeByFirstName(arrRecords, firstName ){
@@ -55,20 +56,27 @@ function findEmployeeByFirstName(arrRecords, firstName ){
  };
 
 function allWagesFor(record){
-    let allDates = record.timeInEvents.map(function(eachDate) {
+    let allDates = record.timeInEvents.map(function(eachDate){
         return eachDate.date
     });
+   
     let payable = allDates.reduce(function(total, d){
-        return total + wagesEarnedOnDate(record, d) 
-    }, 0);
+        console.log(total)
+        return total + wagesEarnedOnDate(record, d) }
+    , 0);
+    
     return payable
 };
 
+function findEmployeeByFirstName(arrRecords, firstName ){
+    return arrRecords.find(elem => elem.firstName === firstName)
+ };
 
 function calculatePayroll(arrRecords){
    return arrRecords.reduce(function(total, r){
        return total + allWagesFor(r),
        0
    })
+  
 };
 
