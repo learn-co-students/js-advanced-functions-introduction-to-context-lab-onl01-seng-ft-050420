@@ -55,15 +55,14 @@ function findEmployeeByFirstName(arrRecords, firstName ){
  };
 
 function allWagesFor(record){
-    let allDates = record.timeInEvents.map(function (eachDate) {
+    let allDates = record.timeInEvents.map(function(eachDate) {
         return eachDate.date
     });
     let payable = allDates.reduce(function(total, d){
         return total + wagesEarnedOnDate(record, d) 
-    }, 0)
+    }, 0);
     return payable
 };
-
 
 
 function calculatePayroll(arrRecords){
