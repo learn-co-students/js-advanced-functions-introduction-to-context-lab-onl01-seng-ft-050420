@@ -61,7 +61,7 @@ function allWagesFor(record){
     });
    
     let payable = allDates.reduce(function(total, d){
-        console.log(total)
+        
         return total + wagesEarnedOnDate(record, d) }
     , 0);
     
@@ -73,10 +73,6 @@ function findEmployeeByFirstName(arrRecords, firstName ){
  };
 
 function calculatePayroll(arrRecords){
-   return arrRecords.reduce(function(total, r){
-       return total + allWagesFor(r),
-       0
-   })
-  
+    return arrRecords.map( r => allWagesFor(r) ).reduce((total, p)=> total + p);
 };
 
